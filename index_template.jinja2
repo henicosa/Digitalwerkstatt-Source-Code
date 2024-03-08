@@ -1,0 +1,10 @@
+<html>
+<head>
+    <title>Index</title>
+</head>
+<body>
+    {% for html_file in html_files %}
+        <a href="{{ html_file.path }}">{{ html_file.linkname }}</a><br>
+    {% endfor %}
+</body>
+</html>
