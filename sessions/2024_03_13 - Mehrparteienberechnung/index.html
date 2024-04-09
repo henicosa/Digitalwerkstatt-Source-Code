@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title></title>
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/werkstatt.css" id="theme" />
+    <link rel="stylesheet" href="plugin/highlight/zenburn.css" />
+	<link rel="stylesheet" href="css/layout.css" />
+	<link rel="stylesheet" href="plugin/customcontrols/style.css">
+
+
+
+    <script defer src="dist/fontawesome/all.min.js"></script>
+
+	<script type="text/javascript">
+		var forgetPop = true;
+		function onPopState(event) {
+			if(forgetPop){
+				forgetPop = false;
+			} else {
+				parent.postMessage(event.target.location.href, "app://obsidian.md");
+			}
+        }
+		window.onpopstate = onPopState;
+		window.onmessage = event => {
+			if(event.data == "reload"){
+				window.document.location.reload();
+			}
+			forgetPop = true;
+		}
+
+		function fitElements(){
+			const itemsToFit = document.getElementsByClassName('fitText');
+			for (const item in itemsToFit) {
+				if (Object.hasOwnProperty.call(itemsToFit, item)) {
+					var element = itemsToFit[item];
+					fitElement(element,1, 1000);
+					element.classList.remove('fitText');
+				}
+			}
+		}
+
+		function fitElement(element, start, end){
+
+			let size = (end + start) / 2;
+			element.style.fontSize = `${size}px`;
+
+			if(Math.abs(start - end) < 1){
+				while(element.scrollHeight > element.offsetHeight){
+					size--;
+					element.style.fontSize = `${size}px`;
+				}
+				return;
+			}
+
+			if(element.scrollHeight > element.offsetHeight){
+				fitElement(element, start, size);
+			} else {
+				fitElement(element, size, end);
+			}		
+		}
+
+
+		document.onreadystatechange = () => {
+			fitElements();
+			if (document.readyState === 'complete') {
+				if (window.location.href.indexOf("?export") != -1){
+					parent.postMessage(event.target.location.href, "app://obsidian.md");
+				}
+				if (window.location.href.indexOf("print-pdf") != -1){
+					let stateCheck = setInterval(() => {
+						clearInterval(stateCheck);
+						window.print();
+					}, 250);
+				}
+			}
+	};
+
+
+        </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides"><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Kryptographie & Privatsphäre
+
+#### Bauhaus Digitalwerkstatt
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="pink" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### News Alert
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="yellow" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Quiz
+   
+>- Was ist `$11^{35} \bmod 12$` ?
+>  
+>- Ein Beispiel für einen Nullwissenbeweis ist "Wo ist Waldo" mit einer großen Schablone. Erkläre an dem Beispiel die Eigenschaften Completeness, Soundness und Zero Knowledge!
+>  
+>- Was ist eine Mehrparteienberechnung?
+</div></script></section><section ><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Restklassen
+
+Berechnen den Ausdruck in `$\mathbb{Z}_{23}$`:
+
+>`$((8+9)*(2-10))^5*(5-6)$`
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Lösung
+> [Lösungslink](https://www.justmaththings.de/de/practice/ResidueClassMixed)
+</div></script></section></section><section ><section data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="cyan" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Knobelei
+
+> Statt eine Münze zu werfen, spielen zwei Spieler A und B ein Minispiel gegeneinander. Das Spiel funktioniert folgendermaßen:
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="cyan" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+> Spieler A schreibt auf zwei Zettel jeweils (verdeckt) eine ganze Zahl, beispielsweise -6 auf den einen und 13 auf den anderen. Spieler B kennt also keine der beiden (verschiedenen) Zahlen.
+>
+> Dann deckt Spieler B eine der beiden Zahlen auf, beispielsweise die 13.
+> Nun muss er raten, ob die bereits aufgedeckte Zahl (13) die größere oder die kleinere der beiden Zahlen ist. Rät er richtig, gewinnt er, rät er falsch, so verliert er den “Münzwurf”.
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="cyan" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+> Ist diese Auswahlmethode fair oder kann sie von einem der beiden Spieler zu seinen Gunsten ausgenutzt werden?
+</div></script></section></section><section ><section data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="cyan" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Knobelei Lösung
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="cyan" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+> Der ratende Spieler B kann sich einen Vorteil verschaffen, durch den er in gewissen Fällen sicher gewinnt, aber in keinem Fall einen Nachteil erleidet.
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="cyan" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+>Idee:
+Spieler B sucht sich vor dem Aufdecken der ersten Zahl eine beliebige ganze Zahl aus und addiert dazu 0,5. Mit Hilfe dieser Zahl a hält sich Spieler B nach dem Aufdecken der ersten Zahl an folgende einfache Regel:
+
+>Ist die aufgedeckte Zahl kleiner als a, so sagt er, dass die aufgedeckte Zahl die kleinere der beiden Zahlen ist.
+Ist die aufgedeckte Zahl größer als a, so rät er, dass die aufgedeckte Zahl die größere der beiden Zahlen ist.
+</div></script></section></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-dark-background drop" data-background-color="blue" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+# Pause
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Live Programmieren
+
+Wir bauen uns einen digitalen Würfel!
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+##### Privatsphäre schützen
+<split even gap="3">
+
+**Verschlüsselung** <!-- .element: style="background: lightblue" -->
+
+Wir wollen Nachrichten austauschen, aber den Inhalt geheim halten. <!-- .element: style="background: lightblue" -->
+
+
+**Null-Wissen Beweis** <!-- .element: style="background: yellow" -->
+
+Wir wollen Aussagen beweisen, aber unser Wissen geheim halten. <!-- .element: style="background: yellow" -->
+
+**Mehrparteien- berechnung** <!-- .element: style="background: pink" -->
+
+Wir wollen Ergebnisse berechnen, aber unsere Variablen geheim halten. <!-- .element: style="background: pink" -->
+</split>
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Mehrparteien- berechnung
+
+<img src="https://www.publicdomainpictures.net/pictures/180000/nahled/cupcakes-wallpaper-background.jpg" alt="Cupcakes|500" style="width: 500px; object-fit: fill">
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+> Es gab 6 frische Muffins. Auf einmal ist der Teller leer. Alle sagen, sie waren es nicht. Wieviele Lügen?
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+#### Schritt 1
+
+Jeder hat einen geheimen Summand `$g_i$`. 0 für Wahrheit und 1 für Lüge (hat die Muffins wirklich gegessen).
+
+Es ist bekannt eine maximalsumme `$s_{max}$` und es wird sich auf einen modulus geeinigt: `$s_{max} < m$`
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+#### Schritt 2
+
+Alle Angeklagten generieren shares ihres summanden:
+
+`$g_1 - z_{1,1} - z_{1,2} = z_{1,3} (\mod m)$`
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+#### Schritt 3
+
+Die Shares werden an unterschiedliche Berechner verteilt und somit zu *geteilten Geheimnissen*.
+
+| A         | B         | C         | D         |
+| :-------- | :-------- | :-------- | --------- |
+| `$z_{1,1}$` | `$z_{1,2}$` | `$z_{1,3}$` | `$z_{1,4}$` |
+| `$z_{2,1}$` | `$z_{2,2}$` | `$z_{2,3}$` | `$z_{2,4}$` |
+| `$z_{3,1}$` | `$z_{3,2}$` | `$z_{3,3}$` | `$z_{3,4}$` |
+| `$z_{4,1}$` | `$z_{4,2}$` | `$z_{4,3}$` | `$z_{4,4}$` |
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+Andere Mehrpateienberechnungen:
+
+- [Private set intersection](https://en.wikipedia.org/wiki/Private_set_intersection)
+- [Multi-party fair exchange protocol](https://en.wikipedia.org/wiki/Multi-party_fair_exchange_protocol)
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Exkurs: Entropie in der Thermodynamik
+
+In einem abgeschlossenen System, das sich durch spontane innere Prozesse (wie Wärmeleitung, Vermischung durch Diffusion, Erzeugung von Reibungswärme, chemische Reaktion etc.) dem thermodynamischen Gleichgewicht annähert, steigt die Entropie des Systems durch diese Prozesse an. Der Gleichgewichtszustand ist erreicht, wenn die Entropie den größtmöglichen Wert erreicht, der mit den gegebenen äußeren Parametern des Systems (wie Volumen, Energie, Teilchenzahlen, äußeres Kraftfeld etc.) verträglich ist. --Wikipedia
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-dark-background drop" data-background-color="blue" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+# Ende
+</div></script></section></div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script src="plugin/zoom/zoom.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/math/math.js"></script>
+	<script src="plugin/mermaid/mermaid.js"></script>
+	<script src="plugin/chart/chart.min.js"></script>
+	<script src="plugin/chart/plugin.js"></script>
+	<script src="plugin/customcontrols/plugin.js"></script>
+
+    <script>
+      function extend() {
+        var target = {};
+        for (var i = 0; i < arguments.length; i++) {
+          var source = arguments[i];
+          for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+              target[key] = source[key];
+            }
+          }
+        }
+        return target;
+      }
+
+	  function isLight(color) {
+		let hex = color.replace('#', '');
+
+		// convert #fff => #ffffff
+		if(hex.length == 3){
+			hex = `${hex[0]}${hex[0]}${hex[1]}${hex[1]}${hex[2]}${hex[2]}`;
+		}
+
+		const c_r = parseInt(hex.substr(0, 2), 16);
+		const c_g = parseInt(hex.substr(2, 2), 16);
+		const c_b = parseInt(hex.substr(4, 2), 16);
+		const brightness = ((c_r * 299) + (c_g * 587) + (c_b * 114)) / 1000;
+		return brightness > 155;
+	}
+
+	var bgColor = getComputedStyle(document.documentElement).getPropertyValue('--r-background-color').trim();
+	var isLight = isLight(bgColor);
+
+	if(isLight){
+		document.body.classList.add('has-light-background');
+	} else {
+		document.body.classList.add('has-dark-background');
+	}
+
+      // default options to init reveal.js
+      var defaultOptions = {
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealZoom,
+          RevealNotes,
+          RevealMath.MathJax3,
+		  RevealMermaid,
+		  RevealChart,
+		  RevealCustomControls,
+        ],
+
+
+    	allottedTime: 120 * 1000,
+
+		mathjax3: {
+			mathjax: 'plugin/math/mathjax/tex-mml-chtml.js',
+		},
+		markdown: {
+		  gfm: true,
+		  mangle: true,
+		  pedantic: false,
+		  smartLists: false,
+		  smartypants: false,
+		},
+
+		mermaid: {
+			theme: isLight ? 'default' : 'dark',
+		},
+
+		customcontrols: {
+			controls: [
+			]
+		},
+      };
+
+      // options from URL query string
+      var queryOptions = Reveal().getQueryHash() || {};
+
+      var options = extend(defaultOptions, {"width":960,"height":700,"margin":0.04,"controls":true,"progress":true,"slideNumber":true,"transition":"slide","transitionSpeed":"default"}, queryOptions);
+    </script>
+
+    <script>
+      Reveal.initialize(options);
+    </script>
+  </body>
+
+  <!-- created with Advanced Slides -->
+</html>
