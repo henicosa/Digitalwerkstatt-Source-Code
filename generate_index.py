@@ -10,7 +10,7 @@ def find_html_files(directory):
                     "path": os.path.join(root, file),
                     "relative_path": os.path.relpath(os.path.join(root, file), directory),
                     "basename": os.path.basename(file),
-                    "linkname": root.split("/")[1]
+                    "linkname": root.split("/")[1].replace("_", " ")
                 })
     return html_files
 
