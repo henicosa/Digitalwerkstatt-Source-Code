@@ -14,7 +14,7 @@ def find_html_files(directory):
                 })
     return html_files
 
-def create_index_html(html_files, template_path="index_template.jinja2", output_path="index.html"):
+def create_index_html(html_files, template_path="index_template.html", output_path="index.html"):
     with open(template_path, "r") as template_file:
         template_content = template_file.read()
         template = Template(template_content)

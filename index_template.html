@@ -11,7 +11,7 @@
 .cards {
   list-style: none;
   margin: 0;
-  padding: 1em;
+  padding: 0;
 }
 
 .cards li {
@@ -59,27 +59,11 @@
     <h1>Digitalwerkstatt Kurse</h1>
     <ul class="flex cards">
     
-    
+    {% for html_file in html_files %}
     <li>
-        <a href="sessions/2024_03_13_Mehrparteienberechnung/index.html"><h2>2024_03_13_Mehrparteienberechnung</h2></a>
+        <a href="{{ html_file.path }}"><h2>{{ html_file.linkname }}</h2></a>
     </li>
-    
-    <li>
-        <a href="sessions/2024_02_07_Asymmetrische Verschlüsselung/index.html"><h2>2024_02_07_Asymmetrische Verschlüsselung</h2></a>
-    </li>
-    
-    <li>
-        <a href="sessions/2023_10_18_Graphen/index.html"><h2>2023_10_18_Graphen</h2></a>
-    </li>
-    
-    <li>
-        <a href="sessions/2024_01_10_Kryptographie/index.html"><h2>2024_01_10_Kryptographie</h2></a>
-    </li>
-    
-    <li>
-        <a href="sessions/2023_11_01_Ameisen & Rundwege/index.html"><h2>2023_11_01_Ameisen & Rundwege</h2></a>
-    </li>
-    
+    {% endfor %}
 
   
 </ul>
