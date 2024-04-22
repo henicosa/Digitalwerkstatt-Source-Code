@@ -3,6 +3,8 @@
 
 Welcome to the Lecture Slides Repository! This repository provides a framework for creating engaging and interactive lecture slides using the reveal.js presentation framework. It also includes documentation for all previous lecture sessions, allowing both lecturers and students to easily access and contribute to the educational material.
 
+The material index is accessible via this link: [https://henicosa.github.io/Digitalwerkstatt-Source-Code/](https://henicosa.github.io/Digitalwerkstatt-Source-Code/)
+
 ## Framework Overview
 
 The repository structure is organized as follows:
