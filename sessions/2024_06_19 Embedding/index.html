@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title></title>
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/werkstatt.css" id="theme" />
+    <link rel="stylesheet" href="plugin/highlight/zenburn.css" />
+	<link rel="stylesheet" href="css/layout.css" />
+	<link rel="stylesheet" href="plugin/customcontrols/style.css">
+
+	<link rel="stylesheet" href="plugin/reveal-pointer/pointer.css" />
+
+
+    <script defer src="dist/fontawesome/all.min.js"></script>
+
+	<script type="text/javascript">
+		var forgetPop = true;
+		function onPopState(event) {
+			if(forgetPop){
+				forgetPop = false;
+			} else {
+				parent.postMessage(event.target.location.href, "app://obsidian.md");
+			}
+        }
+		window.onpopstate = onPopState;
+		window.onmessage = event => {
+			if(event.data == "reload"){
+				window.document.location.reload();
+			}
+			forgetPop = true;
+		}
+
+		function fitElements(){
+			const itemsToFit = document.getElementsByClassName('fitText');
+			for (const item in itemsToFit) {
+				if (Object.hasOwnProperty.call(itemsToFit, item)) {
+					var element = itemsToFit[item];
+					fitElement(element,1, 1000);
+					element.classList.remove('fitText');
+				}
+			}
+		}
+
+		function fitElement(element, start, end){
+
+			let size = (end + start) / 2;
+			element.style.fontSize = `${size}px`;
+
+			if(Math.abs(start - end) < 1){
+				while(element.scrollHeight > element.offsetHeight){
+					size--;
+					element.style.fontSize = `${size}px`;
+				}
+				return;
+			}
+
+			if(element.scrollHeight > element.offsetHeight){
+				fitElement(element, start, size);
+			} else {
+				fitElement(element, size, end);
+			}		
+		}
+
+
+		document.onreadystatechange = () => {
+			fitElements();
+			if (document.readyState === 'complete') {
+				if (window.location.href.indexOf("?export") != -1){
+					parent.postMessage(event.target.location.href, "app://obsidian.md");
+				}
+				if (window.location.href.indexOf("print-pdf") != -1){
+					let stateCheck = setInterval(() => {
+						clearInterval(stateCheck);
+						window.print();
+					}, 250);
+				}
+			}
+	};
+
+
+        </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides"><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Künstliche Intelligenz & Manipulation
+
+#### Bauhaus Digitalwerkstatt
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="pink" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### News Alert
+
+> ![News Image](https://www.sueddeutsche.de/2022/06/14/cfafe66b-c553-48eb-b536-1b80d0276248.jpeg?q=60&fm=avif&width=1536&rect=0%2C0%2C1601%2C900)
+> 
+> ##### Los Angeles: Verkehr durch KI verbessern
+> [KI und Verkehr](https://www.tagesschau.de/wirtschaft/technologie/ki-verkehr-la-100.html)
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="yellow" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Quiz
+
+>- Durch welche Zelle unseres Körpers ist der Perzeptron Algorithmus inspiriert?
+>- Beim Lernen ändert der Perzeptron Algorithmus die Gewichte oder die Eingaben?
+>- Der Perzeptron Algorithmus verarbeitet mehrere Eingabeknoten. Warum hat der erste Knoten immer den Wert 1?
+>- Was kann schiefgehen, wenn wir Objekte aus der realen Welt in einen Feature Space überführen?
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="yellow" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<img src="https://www.statworx.com/wp-content/uploads/2017/12/Blog_Rosenblatt-Perzeptron_perceptron.jpg" alt="|600" style="width: 600px; object-fit: fill">
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="yellow" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<img src="Pasted image 20240529172608.png" alt="" style="object-fit: scale-down">
+</div></script></section><section  data-markdown><script type="text/template">
+</script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="yellow" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Perzeptrons am Limit
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<img src="https://www.statworx.com/wp-content/uploads/2017/12/Blog_Rosenblatt-Perzeptron_perceptron.jpg" alt="|600" style="width: 600px; object-fit: fill">
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" data-background-iframe="https://ludattel.de/Perceptron_AND/" data-background-interactive="true" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+```js
+function draw() {
+  background(255);
+  
+  // Hole dir das aktuelle Beispiel über rounds
+  inputs = examples[rounds][0]
+  target = examples[rounds][1]
+  
+  // Berechne die gewichtete Summe
+  summe = 0
+  for (var i = 0; i < weights.length; i++) {
+    summe += inputs[i]*weights[i]
+  }
+
+  // Lege dich auf das Ergebnis fest
+  result = 0
+  if (summe >= 0)
+    result = 1
+
+  // Zeichne das fertige Perzeptron
+  draw_perceptron(inputs, weights, 0.5, result, target)
+  
+
+  // Ändere die Gewichte wenn die Berechnung nicht mit der Erwartung übereinstimmt
+  for (var i = 0; i < weights.length; i++) {
+    weights[i] += learning_rate * inputs[i] * (target - result)
+  }
+  
+```
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+```js
+  // Hole dir das aktuelle Beispiel über rounds
+  inputs = examples[rounds][0]
+  target = examples[rounds][1]
+```
+- die Runden Variable ändert sich mit der Anzahl der Beispiele (`0, 1, 2, 3, 0, 1, 2 ...`) und ist für uns wie ein Taktgeber / Metronom
+
+```js
+  rounds = (rounds + 1) % examples.length
+```
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+```js
+// Berechne die gewichtete Summe
+  summe = 0
+  for (var i = 0; i < weights.length; i++) {
+    summe += inputs[i]*weights[i]
+  }
+```
+- so sagen wir das Ergebnis mit hilfe unseres Modells vorher (**Prediction**)
+- das ist der vorwärts-Aufruf (**Forward-Call**)
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+```js
+  // Zeichne das fertige Perzeptron
+  draw_perceptron(inputs, weights, 0.5, result, target)
+  
+```
+
+- das Zeichnen haben wir hier ausgelagert und ist für das Verstehen des Algorithmus nicht wichtig
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+```js
+
+  // Ändere die Gewichte wenn die Berechnung nicht mit der Erwartung übereinstimmt
+  for (var i = 0; i < weights.length; i++) {
+    weights[i] += learning_rate * inputs[i] * (target - result)
+  }
+```
+- jetzt ändern wir die gewichte wenn wir mit unserer Vorhersage falsch lagen 
+- Rückwärts Aufruf (**Backward Call**)
+- hier findet das eigentliche Lernen statt
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+- [Link zum Perzeptron Code](https://editor.p5js.org/henicosa/sketches/psxCJWXlo)
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Lineare Separierbarkeit 
+#### (bei der Klassifizierung)
+
+<split even>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Separability_NO.svg/238px-Separability_NO.svg.png" alt="" style="object-fit: scale-down">
+
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Separability_YES.svg/238px-Separability_YES.svg.png" alt="" style="object-fit: scale-down">
+
+</split>
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+* bei 2-dimensionalen Inputs, können die Inputs als Punkte in einem 2-dimensionales Koordinatensystem dargestellt werden, hierbei ist die **lineare** Trennbarkeit eine **Linie**
+* bei 3-dimensionalen Inputs Koordinatensystem dann eine Ebene
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Das logische "Oder" (or)
+
+| `$a$` | `$b$` | `$a \lor b$` |
+| :-- | :-- | :--------- |
+| 0   | 0   | 0          |
+| 0   | 1   | 1          |
+| 1   | 0   | 1          |
+| 1   | 1   | 1          |
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Das logische "Exklusive Oder" (xor)
+
+| `$a$` | `$b$` | `$a \oplus b$` |
+| :-- | :-- | :----------- |
+| 0   | 0   | 0            |
+| 0   | 1   | 1            |
+| 1   | 0   | 1            |
+| 1   | 1   | 0            |
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+#### Das XOR-Problem
+
+<img src="https://methpsy.elearning.psych.tu-dresden.de/mediawiki/images/3/37/Lineare_separierbarkeit.PNG" alt="Image" style="object-fit: scale-down">
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-dark-background drop" data-background-color="blue" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+# Pause
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="yellow" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Word Embeddings
+#### Wörter als Richtungen denken
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<img src="Pasted image 20240529172608.png" alt="" style="object-fit: scale-down">
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Was ist Word Embedding? 
+
+- **Definition**: Word Embedding ist eine Technik, um Wörter in Vektoren zu transformieren, die die semantische Bedeutung der Wörter in einem kontinuierlichen Vektorraum repräsentieren. 
+- **Ziel**: Wörter, die in ähnlichen Kontexten auftreten, sollten ähnliche Vektoren haben. 
+- **Beispiel**: Die Wörter "König" und "Königin" sollten ähnliche Vektoren haben.
+</div></script></section><section ><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Wie wird Word Embedding gemacht? 
+- **Datenquelle**: Große Textkorpora, z.B. Wikipedia, Nachrichtenartikel. 
+- **Techniken**: 
+	- **Maschinelles Lernen**: 
+		- **Word2Vec**: Trainiert ein neuronales Netzwerk, um Vektoren zu generieren.  
+	- **Nicht-maschinelles Lernen**: 
+		- **Co-Occurrence Matrix**: Einfache Zählmethoden der Wortnachbarschaften.
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+- **Trainingsprozess**: 
+	- Eingabe: Wortkontexte aus Textkorpus. 
+	- Ausgabe: Vektorrepräsentationen der Wörter.
+</div></script></section></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Praktische Beispiele 
+- **Synonym-Suche**: 
+	- Beispiel: "Auto" und "Fahrzeug" sollten ähnliche Vektoren haben. 
+- **Analogie-Bildung**: 
+	- Beispiel: "König" - "Mann" + "Frau" ≈ "Königin". 
+- **Textklassifikation**: 
+	- Beispiel: Sentiment-Analyse von Produktbewertungen.
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Wörter auf einer Landkarte
+
+<img src="https://www.publicdomainpictures.net/pictures/210000/velka/treasure-map.jpg" alt="" style="object-fit: scale-down">
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+- [InfiniteCraft](https://neal.fun/infinite-craft/)
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-dark-background drop" data-background-color="blue" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+# Ende
+</div></script></section></div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script src="plugin/zoom/zoom.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/math/math.js"></script>
+	<script src="plugin/mermaid/mermaid.js"></script>
+	<script src="plugin/chart/chart.min.js"></script>
+	<script src="plugin/chart/plugin.js"></script>
+	<script src="plugin/customcontrols/plugin.js"></script>
+	<script src="plugin/reveal-pointer/pointer.js"></script>
+
+    <script>
+      function extend() {
+        var target = {};
+        for (var i = 0; i < arguments.length; i++) {
+          var source = arguments[i];
+          for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+              target[key] = source[key];
+            }
+          }
+        }
+        return target;
+      }
+
+	  function isLight(color) {
+		let hex = color.replace('#', '');
+
+		// convert #fff => #ffffff
+		if(hex.length == 3){
+			hex = `${hex[0]}${hex[0]}${hex[1]}${hex[1]}${hex[2]}${hex[2]}`;
+		}
+
+		const c_r = parseInt(hex.substr(0, 2), 16);
+		const c_g = parseInt(hex.substr(2, 2), 16);
+		const c_b = parseInt(hex.substr(4, 2), 16);
+		const brightness = ((c_r * 299) + (c_g * 587) + (c_b * 114)) / 1000;
+		return brightness > 155;
+	}
+
+	var bgColor = getComputedStyle(document.documentElement).getPropertyValue('--r-background-color').trim();
+	var isLight = isLight(bgColor);
+
+	if(isLight){
+		document.body.classList.add('has-light-background');
+	} else {
+		document.body.classList.add('has-dark-background');
+	}
+
+      // default options to init reveal.js
+      var defaultOptions = {
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealZoom,
+          RevealNotes,
+          RevealMath.MathJax3,
+		  RevealMermaid,
+		  RevealChart,
+		  RevealCustomControls,
+	      RevealPointer
+        ],
+
+
+    	allottedTime: 120 * 1000,
+
+		mathjax3: {
+			mathjax: 'plugin/math/mathjax/tex-mml-chtml.js',
+		},
+		markdown: {
+		  gfm: true,
+		  mangle: true,
+		  pedantic: false,
+		  smartLists: false,
+		  smartypants: false,
+		},
+
+		mermaid: {
+			theme: isLight ? 'default' : 'dark',
+		},
+
+		customcontrols: {
+			controls: [
+			]
+		},
+      };
+
+      // options from URL query string
+      var queryOptions = Reveal().getQueryHash() || {};
+
+      var options = extend(defaultOptions, {"width":960,"height":700,"margin":0.04,"controls":true,"progress":true,"slideNumber":false,"transition":"slide","transitionSpeed":"default"}, queryOptions);
+    </script>
+
+    <script>
+      Reveal.initialize(options);
+    </script>
+  </body>
+
+  <!-- created with Advanced Slides -->
+</html>
